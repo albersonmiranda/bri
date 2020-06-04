@@ -37,7 +37,7 @@ RM_B = function(estado, from = 500, to = 2500, by = 500, n.nomes = 5) {
       guides(fill = guide_colourbar(title = "renda média familiar",
                                     title.position = "top",
                                     title.hjust = 0.5)) +
-      labs(y = "PRETOS & PARDOS") +
+      labs(y = "BRANCOS") +
       theme_void() +
       theme(legend.position = "bottom",
             legend.key.width = unit(1.5, "cm"),
