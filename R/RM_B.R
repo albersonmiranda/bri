@@ -1,4 +1,5 @@
 #' @import tidyverse
+#' @import sf
 
 RM_B = function(estado, from = 500, to = 2500, by = 500, n.nomes = 5) {
 

@@ -3,6 +3,7 @@
 #' Essa função plota os gráficos de renda média per capita branca e preta.
 #' @import tidyverse
 #' @import patchwork
+#' @import sf
 #' @export
 
 RM = function(estado, from = 500, to = 2500, by = 500, n.nomes = 5) {
