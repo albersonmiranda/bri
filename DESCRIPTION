@@ -1,23 +1,30 @@
 Package: desigualdade
-Type: Package
 Title: DataViz em Dados de Desigualdade Racial no Brasil
 Version: 0.0.0.9000
-Author: Alberson Miranda
-Maintainer: Alberson Miranda <albersonmiranda@hotmail.com>
-Description: Esse pacote facilita a visualização da relação entre
-    pobreza e raça nos estados brasileiros.
+Authors@R: 
+    person(given = "Alberson",
+           family = "Miranda",
+           role = c("aut", "cre"),
+           email = "albersonmiranda@hotmail.com")
+Description: Esse pacote facilita a visualizacao da relacao entre
+    pobreza e raca nos estados brasileiros.
 License: MIT + file LICENSE
 Encoding: UTF-8
+Language: pt
 LazyData: true
+Roxygen: list(markdown = TRUE)
 Depends: 
     R (>= 2.10)
 RoxygenNote: 7.1.0
 URL: https://github.com/albersonmiranda/desigualdade
 BugReports: https://github.com/albersonmiranda/desigualdade/issues
 Imports: 
-    tidyverse,
+    dplyr,
+    ggplot2,
+    magrittr,
     patchwork,
     ggrepel,
     scales
 Suggests: 
     testthat
+
