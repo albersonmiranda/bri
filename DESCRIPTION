@@ -24,7 +24,8 @@ Imports:
     magrittr,
     patchwork,
     ggrepel,
-    scales
+    scales,
+    sf
 Suggests: 
     testthat
 
