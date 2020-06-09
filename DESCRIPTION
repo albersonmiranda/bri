@@ -25,7 +25,8 @@ Imports:
     patchwork,
     ggrepel,
     scales,
-    sf
+    sf,
+    purrr
 Suggests: 
     testthat
 
