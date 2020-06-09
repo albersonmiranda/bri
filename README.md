@@ -32,6 +32,7 @@ Rio de Janeiro, exibindo os 3 municípios de maior renda e os 3 de menor:
 
 ``` r
 library(desigualdade)
+
 r_m("RJ", etnia = c("PRETO", "BRANCO", "AMARELO"), n_nomes = 3, p_nomes = 1000,
     autor = "@albersonmiranda",
     titulo = "DESIGUALDADE RACIAL",
@@ -39,3 +40,19 @@ r_m("RJ", etnia = c("PRETO", "BRANCO", "AMARELO"), n_nomes = 3, p_nomes = 1000,
 ```
 
 ![](man/figures/README-example-1.png)<!-- -->
+
+Também é possível utilizar o `patchwork` para controlar o layout do plot
+final:
+
+``` r
+library(patchwork)
+
+r_m("ES", etnia = c("PRETO", "BRANCO", "INDIGENA"),
+    n_nomes = 3, p_nomes = 1000,
+    autor = "@albersonmiranda",
+    titulo = "DESIGUALDADE RACIAL",
+    subtitulo = "ESPÍRITO SANTO") +
+  plot_layout(ncol = 3, widths = c(2,1,1))
+```
+
+![](man/figures/README-example2-1.png)<!-- -->
