@@ -1,14 +1,14 @@
 #' Dados de Censo do IBGE
 #'
-#' Um dataset contendo dados do último censo do IBGE com informações de raça.
-#' Adicionalmente, foi calculada a renda média e desemprego, e incluída as informações
-#' geográficas dos municípios a partir do pacote geobr.
+#' Um dataset contendo dados do ultimo censo do IBGE com informacoes de raca.
+#' Adicionalmente, foi calculada a renda media e desemprego, e incluida as
+#' informacoes geográficas dos municipios a partir do pacote geobr.
 #'
 #' @format A tibble with 5565 rows and 34 variables:
 #' \describe{
 #'   \item{abbrev_state}{siglas dos estados}
-#'   \item{name_muni}{nome do município}
-#'   \item{geom}{limites geográficos dos municípios}
+#'   \item{name_muni}{nome do municipio}
+#'   \item{geom}{limites geograficos dos municípios}
 #' }
 #' @source \url{http://tabnet.datasus.gov.br/cgi/ibge/censo/rendadescr.htm}
 "data_2010"
