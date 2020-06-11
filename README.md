@@ -33,7 +33,7 @@ Paulo, exibindo os 3 municípios de maior renda e os 3 de menor:
 ``` r
 library(desigualdade)
 
-r_m("SP", etnia = c("PRETO", "AMARELO"), n_nomes = 3, p_nomes = 1000,
+r_m("SP", etnia = c("PRETO", "AMARELO"), n_nomes = 3, p_nomes = 1000, to = 2000,
     caption = "dados: Censo/IBGE | elaboração: @albersonmiranda",
     title = "DESIGUALDADE RACIAL",
     subtitle = "RENDA PRETA VERSUS AMARELA EM SP")
@@ -48,7 +48,7 @@ final:
 library(patchwork)
 
 r_m("RJ", etnia = c("PRETO", "BRANCO", "INDIGENA"),
-    n_nomes = 2, p_nomes = 1000,
+    n_nomes = 2, p_nomes = 1000, from = 200, to = 1000, by = 200,
     caption = "dados: Censo/IBGE | elaboração: @albersonmiranda",
     title = "DESIGUALDADE RACIAL",
     subtitle = "RENDA BRANCA VERSUS PRETA E INDIGENA NO RIO DE JANEIRO") +
