@@ -103,7 +103,7 @@ r_m = function(estado,
 
   # draw colorbar?
 
-  colorbar = if(bar == TRUE) {
+  colorbar = if (bar == TRUE) {
 
     guide_colourbar(title = "renda media familiar",
                     title.position = "top",
