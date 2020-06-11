@@ -1,6 +1,6 @@
 Package: desigualdade
 Title: DataViz em Dados de Desigualdade Racial no Brasil
-Version: 0.0.0.9000
+Version: 0.0.0.9002
 Authors@R: 
     person(given = "Alberson",
            family = "Miranda",

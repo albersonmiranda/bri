@@ -6,36 +6,50 @@
 \usage{
 r_m(
   estado,
+  etnia = c("PRETO", "BRANCO", "PARDO", "INDIGENA", "AMARELO"),
+  fonte = c("censo"),
+  ref = c("1991", "2000", "2010"),
+  n_nomes = 5,
+  p_nomes = 0,
   from = 500,
   to = 2500,
   by = 500,
-  n_nomes = 5,
-  p_nomes = 0,
-  etnia = c("PRETO", "BRANCO", "PARDO", "INDIGENA", "AMARELO"),
-  autor = NULL,
-  titulo = NULL,
-  subtitulo = NULL
+  bar = TRUE,
+  title = NULL,
+  subtitle = NULL,
+  caption = NULL
 )
 }
 \arguments{
 \item{estado}{String. O estado a ser plotado.}
 
-\item{from, to, by}{Integer. Valores a serem passados à seq() para criar a
-colorbar. Recomenda-se utilizar valores que representem os mínimos e
-máximos exibidos.}
+\item{etnia}{String. As etnias a serem plotadas. Cada etnia gera um
+objeto ggplot2 que e composto usando o patchwork.}
 
-\item{n_nomes}{Integer. A quantidade de municípios a serem passados ao
+\item{fonte}{String. Fonte de dados utilizada. Atualmente disponivel o
+Censo do IBGE.}
+
+\item{ref}{String. Ano de referencia da coleta de dados. Atualmente
+disponiveis os Censos de 1991, 2000 e 2010.}
+
+\item{n_nomes}{Integer. A quantidade de municipios a serem passados ao
 geom_label(). Note que a quantidade refere-se tanto aos
-municípios de menor e maior renda, de forma que, no total, serão exibidos
+municipios de menor e maior renda, de forma que, no total, serao exibidos
 o dobro de nomes informados.}
 
-\item{p_nomes}{Integer. A população mínima no município de pessoas de cada
-etnia selecionada para que o nome do município seja exibido
+\item{p_nomes}{Integer. A populaçao minima no municipio de pessoas de cada
+etnia selecionada para que o nome do municipio seja exibido
 pelo geom_label().}
 
-\item{etnia}{String. As etnias a serem plotadas. Cada etnia gera um
-objeto ggplot2 que é composto usando o patchwork.}
+\item{from, to, by}{Integer. Valores a serem passados a seq() para criar a
+colorbar. Recomenda-se utilizar valores que representem os minimos e
+maximos exibidos.}
+
+\item{bar}{Logical. Se TRUE, a colorbar da renda e plotada.}
+
+\item{title, subtitle, caption}{String. Controlam o titulo, sibtitulo e
+legenda do maior nivel.}
 }
 \description{
-Essa função plota gráficos de renda média per capita por etnia.
+Essa funçao plota graficos de renda media per capita por etnia.
 }
