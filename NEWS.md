@@ -1,3 +1,12 @@
+# DESIGUALDADE 0.0.0.9002
+
+* adicionados os Censos de 1991 e 2000
+* argumentos de `r_m()`:
+- `autor` alterado para `caption`
+- `bar`: define se será plotada a colorbar
+- `ref`: escolha do ano do Censo
+- `fonte`: escolha da fonte (atualmente apenas censo)
+
 # DESIGUALDADE 0.0.0.9001
 
 * Função renda média por família renomeada para `r_m()`
@@ -12,4 +21,4 @@
 # DESIGUALDADE 0.0.0.9000
 
 * Versão inicial.
-* `RM()` - plota a renda mensal per capita por município em dois gráficos: brancos e pretos/pardos.
+* `RM()` - plota a renda mensal per capita por município em dois gráficos: brancos e pretos/pardos a partir do Censo de 2010.

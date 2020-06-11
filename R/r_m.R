@@ -23,14 +23,26 @@
 #' @param from,to,by Integer. Valores a serem passados a seq() para criar a
 #'   colorbar. Recomenda-se utilizar valores que representem os minimos e
 #'   maximos exibidos.
+#' @param fonte String. Fonte de dados utilizada. Atualmente disponivel o
+#'   Censo do IBGE.
+#' @param ref String. Ano de referencia da coleta de dados. Atualmente
+#'   disponiveis os Censos de 1991, 2000 e 2010.
+#' @param title,subtitle,caption String. Controlam o titulo, sibtitulo e
+#'   legenda do maior nivel.
+#' @param bar Logical. Se TRUE, a colorbar da renda e plotada.
 
 r_m = function(estado,
-               from = 500, to = 2500, by = 500,
-               n_nomes = 5, p_nomes = 0,
                etnia = c("PRETO", "BRANCO", "PARDO", "INDIGENA", "AMARELO"),
-               autor = NULL, titulo = NULL, subtitulo = NULL) {
+               fonte = c("censo"),
+               ref = c("1991", "2000", "2010"),
+               n_nomes = 5, p_nomes = 0,
+               from = 500, to = 2500, by = 500, bar = TRUE,
+               title = NULL, subtitle = NULL, caption = NULL) {
 
-  data = data_2010 %>%
+  # montar variavel a partir da fonte e referencia
+  data = get(paste0(fonte, "_", ref))
+
+  data = data %>%
     filter(abbrev_state == estado) %>%
     select(abbrev_state,
            name_muni,
@@ -74,6 +86,7 @@ r_m = function(estado,
       labs(y = etn) +
       theme_void() +
       theme(legend.position = "none",
+            plot.title.position = "panel",
             axis.title.y = element_text(angle = 90))
 
     if (estado == "ES") {
@@ -87,20 +100,32 @@ r_m = function(estado,
     }
   })
 
+
+  # draw colorbar?
+
+  colorbar = if(bar == TRUE) {
+
+    guide_colourbar(title = "renda media familiar",
+                    title.position = "top",
+                    title.hjust = 0.5)
+  } else {
+
+    "none"
+  }
+
+
+  # final plot
+
   reduce(plots, `+`) +
     theme(legend.position = "bottom",
           legend.key.width = unit(1.5, "cm"),
           axis.title.y = element_text(angle = 90)) +
-    guides(fill = guide_colourbar(title = "renda media familiar",
-                                  title.position = "top",
-                                  title.hjust = 0.5)) +
+    guides(fill = colorbar) +
     plot_layout(guides = "collect") +
     plot_annotation(
-      title = titulo,
-      subtitle = subtitulo,
-      caption = paste("dados: IBGE/censo 2010 |",
-                      "elaborado por:",
-                      autor),
+      title = title,
+      subtitle = subtitle,
+      caption = caption,
       theme = theme(legend.position = "bottom",
                     plot.title = element_text(size = 18))) &
     theme(text = element_text(family = "serif"),
