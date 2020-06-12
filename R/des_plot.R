@@ -32,6 +32,10 @@
 #' @param title,subtitle,caption String. Controlam o titulo, sibtitulo e
 #'   legenda do maior nivel.
 #' @param bar Logical. Se TRUE, a colorbar da renda e plotada.
+#'
+#' @details A definicao de pobreza e pobreza extrema para o IBGE sao,
+#'   respectivamente, pessoas de renda inferior a 1/2 salario minimo e pessoas
+#'   de renda inferior a 1/4 salario minimo.
 
 des_plot = function(estado,
                     etnia = c("PRETO", "BRANCO", "PARDO",

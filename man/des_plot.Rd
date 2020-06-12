@@ -57,3 +57,8 @@ legenda do maior nivel.}
 \code{des_plot} plota o mapa da desigualdade racial nos municipios brasileiros.
 Cada mapa e um objeto ggplot2 combinado pelo \code{patchwork}.
 }
+\details{
+A definicao de pobreza e pobreza extrema para o IBGE sao,
+respectivamente, pessoas de renda inferior a 1/2 salario minimo e pessoas
+de renda inferior a 1/4 salario minimo.
+}
