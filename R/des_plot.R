@@ -38,10 +38,31 @@ des_plot = function(estado,
                               "INDIGENA", "AMARELO"),
                     tipo = c("renda", "pobreza", "pobrezax"),
                     fonte = c("censo"),
-                    ref = c("1991", "2000", "2010"),
-                    n_nomes = 5, p_nomes = 0,
-                    from = 500, to = 2500, by = 500, bar = TRUE,
+                    ref = c("2010", "2000", "1991"),
+                    n_nomes = 2, p_nomes = 1000,
+                    from = 0, to = 3000, by = 500, bar = TRUE,
                     title = NULL, subtitle = NULL, caption = NULL) {
+
+  # evaluate args
+  etnia = match.arg(etnia, c("PRETO", "BRANCO", "PARDO",
+                             "INDIGENA", "AMARELO"), several.ok = TRUE)
+  tipo = match.arg(tipo)
+  fonte = match.arg(fonte)
+  ref = match.arg(ref)
+
+  to = if (missing(to)) {
+    ifelse(tipo == "renda", to, 1)
+  } else {
+    to
+  }
+
+  by = if (missing(by)) {
+    ifelse(tipo == "renda", by, 0.2)
+  } else {
+    by
+  }
+
+
 
   # montar data var a partir da fonte e referencia
   data = get(paste0(fonte, "_", ref))
@@ -56,19 +77,24 @@ des_plot = function(estado,
     # montar variável fill
     fill = case_when(tipo == "renda" ~ paste0("RM_", etn),
                      tipo == "pobreza" ~ paste0("POB_", etn),
-                     tipo == "xpobreza" ~ paste0("POBX_", etn))
+                     tipo == "pobrezax" ~ paste0("POBX_", etn))
 
     # montar variavel de populacao
     pops = case_when(tipo == "renda" ~ paste0("DENRENDA_", etn),
                      tipo == "pobreza" ~ paste0("NUMPOBRES_", etn),
                      tipo == "pobrezax" ~ paste0("NUMPOBRESX_", etn))
 
-    # graficos
+
+        # graficos
     plot = data %>%
       ggplot(
         aes(geometry = geom,
             fill = get(fill),
-            label = paste(name_muni, scales::dollar(get(fill)), sep = "\n"))) +
+            label = if (tipo == "renda") {
+              paste(name_muni, scales::dollar(get(fill)), sep = "\n")
+            } else {
+              paste(name_muni, scales::percent(get(fill)), sep = "\n")
+            })) +
       geom_sf() +
       ggrepel::geom_label_repel(
         data = data %>%
@@ -104,7 +130,7 @@ des_plot = function(estado,
   # draw colorbar?
   colorbar = if (bar == TRUE) {
 
-    guide_colourbar(title = "renda media familiar",
+    guide_colourbar(title = paste(tipo),
                     title.position = "top",
                     title.hjust = 0.5)
   } else {
