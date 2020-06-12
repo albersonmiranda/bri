@@ -1,8 +1,8 @@
 library(desigualdade)
 
 # objetos a serem testados
-es = r_m("ES")
-rj = r_m("RJ")
+es = des_plot("ES")
+rj = des_plot("RJ")
 
 # resultado esperado
 result = c("patchwork", "gg", "ggplot")
