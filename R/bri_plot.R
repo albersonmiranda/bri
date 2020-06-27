@@ -1,6 +1,6 @@
 #' Plotar mapa de desigualdade racial
 #'
-#' `des_plot` plota o mapa da desigualdade racial nos municipios brasileiros.
+#' Plota o mapa da desigualdade racial nos municipios brasileiros.
 #' Cada mapa e um objeto ggplot2 combinado pelo `patchwork`.
 #'
 #' @import patchwork
@@ -37,7 +37,7 @@
 #'   respectivamente, pessoas de renda inferior a 1/2 salario minimo e pessoas
 #'   de renda inferior a 1/4 salario minimo.
 
-des_plot = function(estado,
+bri_plot = function(estado,
                     etnia = c("PRETO", "BRANCO", "PARDO",
                               "INDIGENA", "AMARELO"),
                     tipo = c("renda", "pobreza", "pobrezax"),
