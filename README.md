@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# DESIGUALDADE RACIAL NO BRASIL
+# BRAZILIAN RACIAL INEQUALITY: THE {BRI} PACKAGE
 
 <!-- badges: start -->
 
@@ -11,29 +11,29 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-O objetivo desse pacote é facilitar a plotagem de gráficos que
-evidenciam a desigualdade racial nos municípios brasileiros.
+{bri} \[/brē/\] is a tidy and sf-ready data package focused in
+facilitate plotting racial inequality in Brazilian municipalities.
 
-## Instalação
+## Installation
 
-Você pode instalar a versão de desenvolvimento do pacote pelo
-[GitHub](https://github.com/) com:
+You can install the development version of the package at
+[GitHub](https://github.com/):
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("albersonmiranda/desigualdade")
+devtools::install_github("albersonmiranda/bri")
 ```
 
-## Exemplos
+## Examples
 
-Esse é um exemplo básico em que mostra como plotar o gráfico da
-desigualdade de renda entre pretos e amarelos nos municípios de São
-Paulo, exibindo os 3 municípios de maior renda e os 3 de menor:
+This is a basic example that shows how to plot income inequality between
+blacks and yellows in the municipalities of São Paulo, showing top 3
+municipalities of highest income and bottom 3 of the lowest:
 
 ``` r
-library(desigualdade)
+library(bri)
 
-des_plot("SP", etnia = c("PRETO", "AMARELO"), n_nomes = 3,
+bri_plot("SP", etnia = c("PRETO", "AMARELO"), n_nomes = 3,
     caption = "dados: censo/2010 | elaboração: @albersonmiranda",
     title = "DESIGUALDADE RACIAL",
     subtitle = "RENDA PRETA VERSUS AMARELA EM SP")
@@ -41,13 +41,12 @@ des_plot("SP", etnia = c("PRETO", "AMARELO"), n_nomes = 3,
 
 ![](man/figures/README-example-1.png)<!-- -->
 
-Também pode-se utilizar o `patchwork` para controlar o layout do plot
-final:
+{Patchwork} can also be used to control the layout of the final plot:
 
 ``` r
 library(patchwork)
 
-des_plot("RO", etnia = c("PRETO", "PARDO", "BRANCO", "INDIGENA"),
+bri_plot("RO", etnia = c("PRETO", "PARDO", "BRANCO", "INDIGENA"),
     tipo = "pobreza", n_nomes = 1,
     caption = "dados: censo/2010 | elaboração: @albersonmiranda",
     title = "DESIGUALDADE RACIAL",
@@ -57,8 +56,8 @@ des_plot("RO", etnia = c("PRETO", "PARDO", "BRANCO", "INDIGENA"),
 
 ![](man/figures/README-example2-1.png)<!-- -->
 
-É possível ir além e combinar vários `des_plot()` com diferentes
-argumentos:
+It is possible to go further and combine several `bri_plot ()` with
+different arguments:
 
 ``` r
 
@@ -68,16 +67,16 @@ design = "
 AABBCC
 AABBDD
 "
-des_plot("ES", etnia = c("PRETO", "BRANCO"), ref = "2010",
+bri_plot("ES", etnia = c("PRETO", "BRANCO"), ref = "2010",
     caption = "dados: censo/IBGE | elaboração: @albersonmiranda",
     title =  "DESIGUALDADE RACIAL NO ESPIRITO SANTO",
     subtitle = "EVOLUÇÃO DAS RENDAS PRETA E BRANCA") *
   ggtitle("2010") +
   
-  des_plot("ES", etnia = c("PRETO", "BRANCO"), ref = "1991", n_nomes = 1,
+  bri_plot("ES", etnia = c("PRETO", "BRANCO"), ref = "1991", n_nomes = 1,
       bar = FALSE) * ggtitle("1991") +
   
-  des_plot("ES", etnia = c("PRETO", "BRANCO"), ref = "2000", n_nomes = 1,
+  bri_plot("ES", etnia = c("PRETO", "BRANCO"), ref = "2000", n_nomes = 1,
       bar = FALSE) * ggtitle("2000") +
   
   plot_layout(design = design)

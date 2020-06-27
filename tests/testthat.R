@@ -1,4 +1,4 @@
 library(testthat)
-library(desigualdade)
+library(bri)
 
-test_check("desigualdade")
+test_check("bri")

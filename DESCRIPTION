@@ -1,6 +1,6 @@
 Package: bri
 Title: DataViz on Brazilian Racial Inequality
-Version: 0.0.0.9004
+Version: 0.0.0.9003
 Authors@R: 
     person(given = "Alberson",
            family = "Miranda",
