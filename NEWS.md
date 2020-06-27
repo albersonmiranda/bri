@@ -1,3 +1,9 @@
+# DESIGUALDADE 0.0.0.9003
+
+* função `r_m()` generalizada para `des_plot()`
+* argumentos adicionados:
+- `tipo`: renda média, % pobres, % extrema pobreza
+
 # DESIGUALDADE 0.0.0.9002
 
 * adicionados os Censos de 1991 e 2000

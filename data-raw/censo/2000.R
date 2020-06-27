@@ -46,16 +46,18 @@ censo_2000 = censo_2000 %>% inner_join(mapa, by = c("MUNCOD" = "code_muni")) %>%
                              CORRACA == 5 ~ "INDIGENA",
                              CORRACA == 0 ~ "SEM DECLARACAO"),
          RM = NUMRENDA / DENRENDA,
+         POB = NUMPOBRES / DENRENDA,
+         POBX = NUMPOBRESX / DENRENDA,
          DSMPRG = NUMDESOCUP / DENDESOCUP) %>%
   select(abbrev_state, name_muni, CORRACA,
          NUMRENDA, DENRENDA, RM,
-         NUMPOBRES, NUMPOBRESX,
+         NUMPOBRES, NUMPOBRESX, POB, POBX,
          NUMDESOCUP, DENDESOCUP, DSMPRG,
          geom) %>%
   pivot_wider(id_cols = c(abbrev_state, name_muni, geom),
               names_from = CORRACA,
               values_from = c(NUMRENDA, DENRENDA, RM,
-                              NUMPOBRES, NUMPOBRESX,
+                              NUMPOBRES, NUMPOBRESX, POB, POBX,
                               NUMDESOCUP, DENDESOCUP, DSMPRG))
 
 # 4. DATA ----
