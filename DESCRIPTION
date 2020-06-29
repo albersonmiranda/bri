@@ -1,6 +1,6 @@
 Package: bri
 Title: DataViz on Brazilian Racial Inequality
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Authors@R: 
     person(given = "Alberson",
            family = "Miranda",
@@ -19,14 +19,15 @@ RoxygenNote: 7.1.0
 URL: https://github.com/albersonmiranda/bri
 BugReports: https://github.com/albersonmiranda/bri/issues
 Imports: 
+    checkmate,
     dplyr,
     ggplot2,
+    ggrepel,
     magrittr,
     patchwork,
-    ggrepel,
+    purrr,
     scales,
-    sf,
-    purrr
+    sf
 Suggests: 
     testthat
 
