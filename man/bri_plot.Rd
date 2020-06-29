@@ -8,8 +8,8 @@ bri_plot(
   estado,
   etnia = c("PRETO", "BRANCO", "PARDO", "INDIGENA", "AMARELO"),
   tipo = c("renda", "pobreza", "pobrezax"),
-  fonte = c("censo"),
-  ref = c("2010", "2000", "1991"),
+  fonte = c("censo", "rais"),
+  ref = c("2010", "2017", "2000", "1991"),
   n_nomes = 2,
   p_nomes = 1000,
   from = 0,
@@ -30,7 +30,7 @@ objeto ggplot2 que e composto usando o patchwork.}
 \item{tipo}{String. Variavel socioeconomia a ser utilizada para a plotagem.}
 
 \item{fonte}{String. Fonte de dados utilizada. Atualmente disponivel o
-Censo do IBGE.}
+Censo do IBGE e a Rais do MTE.}
 
 \item{ref}{String. Ano de referencia da coleta de dados. Atualmente
 disponiveis os Censos de 1991, 2000 e 2010.}

@@ -8,7 +8,6 @@
 #' @import ggplot2
 #' @import dplyr
 #' @importFrom magrittr %>%
-#' @importFrom purrr reduce
 #' @export
 #'
 #' @param estado String. O estado a ser plotado.
@@ -26,7 +25,7 @@
 #'   colorbar. Recomenda-se utilizar valores que representem os minimos e
 #'   maximos exibidos.
 #' @param fonte String. Fonte de dados utilizada. Atualmente disponivel o
-#'   Censo do IBGE.
+#'   Censo do IBGE e a Rais do MTE.
 #' @param ref String. Ano de referencia da coleta de dados. Atualmente
 #'   disponiveis os Censos de 1991, 2000 e 2010.
 #' @param title,subtitle,caption String. Controlam o titulo, sibtitulo e
@@ -41,35 +40,63 @@ bri_plot = function(estado,
                     etnia = c("PRETO", "BRANCO", "PARDO",
                               "INDIGENA", "AMARELO"),
                     tipo = c("renda", "pobreza", "pobrezax"),
-                    fonte = c("censo"),
-                    ref = c("2010", "2000", "1991"),
+                    fonte = c("censo", "rais"),
+                    ref = c("2010", "2017", "2000", "1991"),
                     n_nomes = 2, p_nomes = 1000,
                     from = 0, to = 3000, by = 500, bar = TRUE,
                     title = NULL, subtitle = NULL, caption = NULL) {
 
   # evaluate args
-  etnia = match.arg(etnia, c("PRETO", "BRANCO", "PARDO",
-                             "INDIGENA", "AMARELO"), several.ok = TRUE)
+  etnia = match.arg(etnia, several.ok = TRUE)
   tipo = match.arg(tipo)
   fonte = match.arg(fonte)
   ref = match.arg(ref)
 
-  to = if (missing(to)) {
-    ifelse(tipo == "renda", to, 1)
-  } else {
-    to
+  censo_allowlist = c("1991", "2000", "2010")
+  rais_allowlist = c("2017")
+
+  if (fonte == "censo") {
+
+  checkmate::assert_choice(ref, censo_allowlist)
   }
 
-  by = if (missing(by)) {
-    ifelse(tipo == "renda", by, 0.2)
-  } else {
-    by
+  if (fonte == "rais") {
+
+    checkmate::assert_choice(ref, rais_allowlist)
   }
 
+  if (missing(to) & tipo != "renda") {
+    to = 1
+  }
 
+  if (missing(by) & tipo!= "renda") {
+    by = 0.2
+  }
 
   # montar data var a partir da fonte e referencia
-  data = get(paste0(fonte, "_", ref))
+  if (fonte == "censo") {
+
+    data = get(fonte)[[ref]]
+  }
+
+  if (fonte == "rais") {
+
+    temp_state = tolower(estado)
+    data = paste0(fonte, "_", ref)
+    data = get(data)[[paste0(fonte, ref, "_", "vinculo", "_", temp_state)]]
+  }
+
+  # joinning map data
+  if (fonte == "rais") {
+    data = data %>%
+      ungroup() %>%
+      inner_join(mapa, by = c("muni_estab" = "code_muni"))
+  }
+
+  if (fonte == "censo") {
+    data = data %>%
+      inner_join(mapa, by = c("MUNCOD" = "code_muni"))
+  }
 
   # montar dataset
   data = data %>%
@@ -144,7 +171,7 @@ bri_plot = function(estado,
 
 
   # final plot
-  reduce(plots, `+`) +
+  purrr::reduce(plots, `+`) +
     theme(legend.position = "bottom",
           legend.key.width = unit(1.5, "cm"),
           axis.title.y = element_text(angle = 90)) +
