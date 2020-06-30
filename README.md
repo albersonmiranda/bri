@@ -28,15 +28,18 @@ devtools::install_github("albersonmiranda/bri")
 
 This is a basic example that shows how to plot income inequality between
 blacks and yellows in the municipalities of São Paulo, showing top 3
-municipalities of highest income and bottom 3 of the lowest:
+municipalities of highest income and bottom 3 of the lowest, labelling
+only the ones with sample size greater than 1000 workers of each
+selected ethnicity:
 
 ``` r
 library(bri)
 
-bri_plot("SP", etnia = c("PRETO", "AMARELO"), n_nomes = 3,
-    caption = "dados: censo/2010 | elaboração: @albersonmiranda",
-    title = "DESIGUALDADE RACIAL",
-    subtitle = "RENDA PRETA VERSUS AMARELA EM SP")
+bri_plot("SP", etnia = c("PRETO", "AMARELO"), fonte = "rais", ref = "2017",
+         n_nomes = 3, p_nomes = 1000, to = 7000, by = 1400,
+         caption = "source: Rais/2017 | elaboração: @albersonmiranda",
+         title = "RACIAL INEQUALITY",
+         subtitle = "BLACK VERSUS YELLOW WAGES")
 ```
 
 ![](man/figures/README-example-1.png)<!-- -->
