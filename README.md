@@ -59,7 +59,7 @@ bri_plot("RO", etnia = c("PRETO", "PARDO", "BRANCO", "INDIGENA"),
 
 ![](man/figures/README-example2-1.png)<!-- -->
 
-It is possible to go further and combine several `bri_plot ()` with
+It is possible to go further and combine several `bri_plot()` with
 different arguments:
 
 ``` r

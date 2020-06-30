@@ -61,7 +61,7 @@ bri_plot("RO", etnia = c("PRETO", "PARDO", "BRANCO", "INDIGENA"),
   plot_layout(ncol = 2)
 ```
 
-It is possible to go further and combine several `bri_plot ()` with different arguments:
+It is possible to go further and combine several `bri_plot()` with different arguments:
 
 ```{r example3}
 

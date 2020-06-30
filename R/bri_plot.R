@@ -69,7 +69,7 @@ bri_plot = function(estado,
     to = 1
   }
 
-  if (missing(by) & tipo!= "renda") {
+  if (missing(by) & tipo != "renda") {
     by = 0.2
   }
 
